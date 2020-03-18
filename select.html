@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="search" multiple>
+        <option value="1">Volvo</option>
+        <option value="2">Saab</option>
+        <option value="3">Opel</option>
+        <option value="4">Audi</option>
+    </select> 
+
+    <button onclick="send()">Enviar</button>
+
+    <script>
+        
+        let select = document.getElementById('search')
+
+        select.onclick = function(e) {
+            
+            let option = e.srcElement
+
+            if(!option.hasAttribute('selected')) {
+                option.setAttribute('selected', 'selected')
+                option.style.background = 'red'
+            }else {
+                option.removeAttribute('selected')
+                option.style.background = 'transparent'
+            }
+
+        }
+        
+        function send() {
+            let options = select.options
+            let values = [];
+
+            Array.prototype.forEach.call(select.options, option => {
+                option.hasAttribute('selected') ? values.push(option.value) : ''
+            })
+            
+        }
+    </script>
+</body>
+</html>
